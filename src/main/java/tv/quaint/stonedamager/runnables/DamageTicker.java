@@ -2,7 +2,7 @@ package tv.quaint.stonedamager.runnables;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.bukkit.entity.Mob;
+import org.bukkit.entity.LivingEntity;
 import tv.quaint.stonedamager.DamageHandler;
 import tv.quaint.stonedamager.StoneDamager;
 import tv.quaint.stonedamager.events.ScheduleDamageEvent;
@@ -11,17 +11,17 @@ public class DamageTicker implements Runnable {
     @Getter @Setter
     int currentTick;
     @Getter @Setter
-    Mob mob;
+    LivingEntity e;
 
-    public DamageTicker(Mob mob, boolean fireImmediately) {
-        this.mob = mob;
+    public DamageTicker(LivingEntity e, boolean fireImmediately) {
+        this.e = e;
         this.currentTick = 0;
 
-        if (fireImmediately) new ScheduleDamageEvent(mob).fire();
+        if (fireImmediately) new ScheduleDamageEvent(e).fire();
     }
 
-    public DamageTicker(Mob mob) {
-        this(mob, true);
+    public DamageTicker(LivingEntity e) {
+        this(e, true);
     }
 
     @Override
@@ -30,7 +30,7 @@ public class DamageTicker implements Runnable {
 
         if (currentTick >= StoneDamager.getDamagerConfig().getTicksPerDamage()) {
             try {
-                DamageHandler.checkEntity(mob);
+                DamageHandler.checkEntity(e);
             } catch (Exception e) {
                 e.printStackTrace();
             }

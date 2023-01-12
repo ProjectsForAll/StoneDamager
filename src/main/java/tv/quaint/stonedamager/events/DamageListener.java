@@ -15,11 +15,11 @@ public class DamageListener implements BaseEventListener {
     public void onDamage(ScheduleDamageEvent event) {
         double damage = StoneDamager.getDamagerConfig().getDamageAmount();
 
-        event.getMob().damage(damage);
+        event.getE().damage(damage);
     }
 
     @BaseProcessor
     public void onStep(EntityStepOnDamagerEvent event) {
-        new DamageTicker(event.getMob(), event.isFireImmediately());
+        new DamageTicker(event.getE(), event.isFireImmediately());
     }
 }
