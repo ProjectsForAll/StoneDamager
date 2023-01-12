@@ -1,0 +1,6 @@
+name: StoneDamager
+version: '${project.version}'
+main: tv.quaint.stonedamager.StoneDamager
+authors: [ Quaint ]
+description: A plugin to simply make it so that stonecutters damage entities.
+website: https://get.stream-lined.io

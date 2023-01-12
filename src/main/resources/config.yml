@@ -1,0 +1,10 @@
+ticks-per-damage: 20
+damage-amount: 3.0
+entities:
+  types:
+    - "ARMOR_STAND"
+    - "ITEM_FRAME"
+  is-whitelist: false
+worlds:
+  names: []
+  is-whitelist: false
