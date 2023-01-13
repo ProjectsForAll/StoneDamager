@@ -6,5 +6,6 @@ entities:
     - "ITEM_FRAME"
   is-whitelist: false
 worlds:
-  names: []
+  names:
+    - "lobby"
   is-whitelist: false

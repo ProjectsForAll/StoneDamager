@@ -48,7 +48,7 @@ public class DamagerConfig extends SimpleConfiguration {
     public List<String> getWorlds() {
         reloadResource();
 
-        return getResource().getStringList("worlds.name");
+        return getResource().getStringList("worlds.names");
     }
 
     public boolean isWorldWhitelist() {
