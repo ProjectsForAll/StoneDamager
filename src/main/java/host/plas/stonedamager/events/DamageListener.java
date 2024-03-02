@@ -1,14 +1,14 @@
-package tv.quaint.stonedamager.events;
+package host.plas.stonedamager.events;
 
+import host.plas.stonedamager.StoneDamager;
+import host.plas.stonedamager.runnables.DamageTicker;
 import tv.quaint.events.BaseEventHandler;
 import tv.quaint.events.BaseEventListener;
 import tv.quaint.events.processing.BaseProcessor;
-import tv.quaint.stonedamager.StoneDamager;
-import tv.quaint.stonedamager.runnables.DamageTicker;
 
 public class DamageListener implements BaseEventListener {
     public DamageListener() {
-        BaseEventHandler.bake(this, StoneDamager.getEventable());
+        BaseEventHandler.bake(this, StoneDamager.getInstance());
     }
 
     @BaseProcessor

@@ -1,6 +1,6 @@
-name: StoneDamager
-version: '${project.version}'
-main: tv.quaint.stonedamager.StoneDamager
+name: '${name}'
+version: '${version}'
+main: '${main}'
 authors: [ Quaint ]
 description: A plugin to simply make it so that stone cutters damage entities.
 website: https://site.plasmere.net

@@ -1,14 +1,13 @@
-package tv.quaint.stonedamager.config;
+package host.plas.stonedamager.config;
 
-import tv.quaint.stonedamager.StoneDamager;
+import host.plas.stonedamager.StoneDamager;
 import tv.quaint.storage.resources.flat.simple.SimpleConfiguration;
 
-import java.io.File;
 import java.util.List;
 
 public class DamagerConfig extends SimpleConfiguration {
     public DamagerConfig() {
-        super("config.yml", StoneDamager.getInstance().getDataFolder(), true);
+        super("config.yml", StoneDamager.getInstance(), true);
     }
 
     @Override

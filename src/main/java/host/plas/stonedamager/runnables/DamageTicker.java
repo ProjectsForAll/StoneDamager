@@ -1,19 +1,21 @@
-package tv.quaint.stonedamager.runnables;
+package host.plas.stonedamager.runnables;
 
+import io.streamlined.bukkit.instances.BaseRunnable;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.entity.LivingEntity;
-import tv.quaint.stonedamager.DamageHandler;
-import tv.quaint.stonedamager.StoneDamager;
-import tv.quaint.stonedamager.events.ScheduleDamageEvent;
+import host.plas.stonedamager.DamageHandler;
+import host.plas.stonedamager.StoneDamager;
+import host.plas.stonedamager.events.ScheduleDamageEvent;
 
-public class DamageTicker implements Runnable {
-    @Getter @Setter
+@Setter
+@Getter
+public class DamageTicker extends BaseRunnable {
     int currentTick;
-    @Getter @Setter
     LivingEntity e;
 
     public DamageTicker(LivingEntity e, boolean fireImmediately) {
+        super(0, 1, true);
         this.e = e;
         this.currentTick = 0;
 
@@ -25,7 +27,7 @@ public class DamageTicker implements Runnable {
     }
 
     @Override
-    public void run() {
+    public void execute() {
         currentTick ++;
 
         if (currentTick >= StoneDamager.getDamagerConfig().getTicksPerDamage()) {

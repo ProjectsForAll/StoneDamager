@@ -1,11 +1,9 @@
-package tv.quaint.stonedamager;
+package host.plas.stonedamager;
 
+import host.plas.stonedamager.events.EntityStepOnDamagerEvent;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Mob;
-import org.bukkit.entity.Player;
-import tv.quaint.stonedamager.events.EntityStepOnDamagerEvent;
 
 public class DamageHandler {
     public static void checkEntity(Entity entity) {
