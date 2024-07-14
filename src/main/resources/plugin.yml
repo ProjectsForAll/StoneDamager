@@ -5,3 +5,4 @@ authors: [ Quaint ]
 description: A plugin to simply make it so that stone cutters damage entities.
 website: https://site.plasmere.net
 api-version: 1.14
+folia-supported: true

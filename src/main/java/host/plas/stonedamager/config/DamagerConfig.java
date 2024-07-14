@@ -3,6 +3,7 @@ package host.plas.stonedamager.config;
 import host.plas.stonedamager.StoneDamager;
 import tv.quaint.storage.resources.flat.simple.SimpleConfiguration;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DamagerConfig extends SimpleConfiguration {
@@ -12,47 +13,86 @@ public class DamagerConfig extends SimpleConfiguration {
 
     @Override
     public void init() {
-        getResource().set("ticks-per-damage", 20);
-        getResource().set("damage-amount", 3d);
-        getResource().set("entities.types", List.of("ARMOR_STAND", "ITEM_FRAME"));
-        getResource().set("entities.is-whitelist", false);
-        getResource().set("worlds.name", List.of("world_nether", "world_the_end"));
-        getResource().set("worlds.is-whitelist", false);
+        getTicksPerDamage();
+        getDamageAmount();
+        getEntityTypes();
+        isEntityWhitelist();
+        getWorlds();
+        isWorldWhitelist();
     }
 
     public int getTicksPerDamage() {
         reloadResource();
 
-        return getResource().getInt("ticks-per-damage");
+        return getOrSetDefault("ticks-per-damage", 20);
     }
 
     public double getDamageAmount() {
         reloadResource();
 
-        return getResource().getDouble("damage-amount");
+        return getOrSetDefault("damage-amount", 3d);
     }
 
     public List<String> getEntityTypes() {
         reloadResource();
 
-        return getResource().getStringList("entities.types");
+        return getOrSetDefault("entities.types", new ArrayList<>(getDefaultTypes()));
+    }
+
+    public static List<String> getDefaultTypes() {
+        return List.of(
+                "ARMOR_STAND",
+                "ITEM_FRAME",
+                "PAINTING",
+                "VILLAGER",
+                "WANDERING_TRADER",
+                "WOLF",
+                "OCELOT",
+                "CAT",
+                "PARROT",
+                "LLAMA",
+                "TRADER_LLAMA",
+                "DONKEY",
+                "MULE",
+                "HORSE",
+                "SKELETON_HORSE",
+                "ZOMBIE_HORSE",
+                "ALLAY",
+                "MINECART",
+                "MINECART_CHEST",
+                "MINECART_FURNACE",
+                "MINECART_TNT",
+                "MINECART_HOPPER",
+                "MINECART_MOB_SPAWNER",
+                "MINECART_COMMAND",
+                "OAK_BOAT",
+                "SPRUCE_BOAT",
+                "BIRCH_BOAT",
+                "JUNGLE_BOAT",
+                "ACACIA_BOAT",
+                "DARK_OAK_BOAT",
+                "MANGROVE_BOAT",
+                "CHERRY_BOAT",
+                "BEE",
+                "PLAYER"
+        );
     }
 
     public boolean isEntityWhitelist() {
         reloadResource();
 
-        return getResource().getBoolean("entities.is-whitelist");
+        return getOrSetDefault("entities.is-whitelist", false);
     }
 
     public List<String> getWorlds() {
         reloadResource();
 
-        return getResource().getStringList("worlds.names");
+        return getOrSetDefault("worlds.names", List.of("lobby"));
     }
 
     public boolean isWorldWhitelist() {
         reloadResource();
 
-        return getResource().getBoolean("worlds.is-whitelist");
+        return getOrSetDefault("worlds.is-whitelist", false);
     }
 }

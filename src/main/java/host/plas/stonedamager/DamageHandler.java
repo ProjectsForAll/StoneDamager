@@ -1,37 +1,36 @@
 package host.plas.stonedamager;
 
-import host.plas.stonedamager.events.EntityStepOnDamagerEvent;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.LivingEntity;
 
 public class DamageHandler {
-    public static void checkEntity(Entity entity) {
-        if (entity instanceof LivingEntity) {
-            LivingEntity e = (LivingEntity) entity;
-            if (e.getLocation().getBlock().getType() != Material.STONECUTTER) return;
-
-            if (StoneDamager.getDamagerConfig().isWorldWhitelist()) {
-                if (StoneDamager.getDamagerConfig().getWorlds().contains(e.getWorld().getName())) {
-                    checkEntityAndRun(e);
-                }
-            } else {
-                if (! StoneDamager.getDamagerConfig().getWorlds().contains(e.getWorld().getName())) {
-                    checkEntityAndRun(e);
-                }
-            }
-        }
+    public static boolean isOnDamager(Entity entity) {
+        Location location = entity.getLocation();
+        return location.getBlock().getType() == Material.STONECUTTER;
     }
 
-    private static void checkEntityAndRun(LivingEntity e) {
-        if (StoneDamager.getDamagerConfig().isEntityWhitelist()) {
-            if (StoneDamager.getDamagerConfig().getEntityTypes().contains(e.getType().name())) {
-                new EntityStepOnDamagerEvent(e).fire();
+    public static boolean checkWorldThenEntity(Entity entity) {
+        if (! isOnDamager(entity)) return false;
+
+        if (StoneDamager.getDamagerConfig().isWorldWhitelist()) {
+            if (StoneDamager.getDamagerConfig().getWorlds().contains(entity.getWorld().getName())) {
+                return checkEntity(entity);
             }
         } else {
-            if (! StoneDamager.getDamagerConfig().getEntityTypes().contains(e.getType().name())) {
-                new EntityStepOnDamagerEvent(e).fire();
+            if (! StoneDamager.getDamagerConfig().getWorlds().contains(entity.getWorld().getName())) {
+                return checkEntity(entity);
             }
+        }
+
+        return false;
+    }
+
+    public static boolean checkEntity(Entity entity) {
+        if (StoneDamager.getDamagerConfig().isEntityWhitelist()) {
+            return StoneDamager.getDamagerConfig().getEntityTypes().contains(entity.getType().name());
+        } else {
+            return ! StoneDamager.getDamagerConfig().getEntityTypes().contains(entity.getType().name());
         }
     }
 }

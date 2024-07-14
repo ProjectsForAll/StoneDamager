@@ -7,10 +7,10 @@ import tv.quaint.events.components.BaseEvent;
 
 @Setter
 @Getter
-public class ScheduleDamageEvent extends BaseEvent {
-    LivingEntity e;
+public class ScheduledDamageEvent extends BaseEvent {
+    private LivingEntity entity;
 
-    public ScheduleDamageEvent(LivingEntity e) {
-        this.e = e;
+    public ScheduledDamageEvent(LivingEntity entity) {
+        this.entity = entity;
     }
 }
