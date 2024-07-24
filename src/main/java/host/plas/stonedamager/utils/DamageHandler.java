@@ -1,5 +1,6 @@
-package host.plas.stonedamager;
+package host.plas.stonedamager.utils;
 
+import host.plas.stonedamager.StoneDamager;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;

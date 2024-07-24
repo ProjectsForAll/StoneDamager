@@ -3,8 +3,9 @@ package host.plas.stonedamager.runnables;
 import host.plas.bou.MessageUtils;
 import host.plas.bou.scheduling.BaseRunnable;
 import host.plas.bou.scheduling.TaskManager;
+import host.plas.bou.utils.ClassHelper;
 import host.plas.bou.utils.EntityUtils;
-import host.plas.stonedamager.DamageHandler;
+import host.plas.stonedamager.utils.DamageHandler;
 import host.plas.stonedamager.StoneDamager;
 import host.plas.stonedamager.events.ScheduledDamageEvent;
 import lombok.Getter;
@@ -28,6 +29,9 @@ public class TickTicker extends BaseRunnable {
         try {
             TaskManager.getScheduler().runTask(() -> {
                 ConcurrentSkipListMap<String, Entity> entities = EntityUtils.getCachedEntities();
+                if (! ClassHelper.isFolia()) {
+                    entities = EntityUtils.getEntitiesBukkit();
+                }
 
                 entities.forEach((s, entity) -> {
                     TaskManager.getScheduler().runTask(entity, () -> {

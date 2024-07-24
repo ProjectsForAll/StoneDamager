@@ -1,7 +1,9 @@
 name: '${name}'
 version: '${version}'
 main: '${main}'
-authors: [ Quaint ]
+authors: [ Drak ]
+depend:
+  - BukkitOfUtils
 description: A plugin to simply make it so that stone cutters damage entities.
 website: https://site.plasmere.net
 api-version: 1.14
