@@ -102,7 +102,7 @@ public class DamageHandler {
                 if (ticks > 0) {
                     tickTicksLeft(damagableSelection.getIdentifier());
                 } else {
-                    EntityUtils.getEntities().forEach((s, entity) -> {
+                    EntityUtils.collectEntitiesThenDo((entity) -> {
                         try {
                             if (ClassHelper.isFolia()) {
                                 TaskManager.getScheduler().runTask(entity, getDamageTask(damagableSelection, entity));
