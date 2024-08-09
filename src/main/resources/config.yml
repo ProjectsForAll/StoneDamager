@@ -1,57 +1,83 @@
-# Ticks between hurting the entity.
-# 20 ticks = 1 second.
-ticks-per-damage: 20
-# Amount of damage points to hurt.
-# 1.0 = 1/2 of a heart.
-# 10.5 = 5 and 1/4 hearts.
-damage-amount: 3.0
-# Entity config.
-entities:
-  # A list of entity types.
-  # Find a full list at: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
-  types:
-    - "ARMOR_STAND"
-    - "ITEM_FRAME"
-    - "PAINTING"
-    - "VILLAGER"
-    - "WANDERING_TRADER"
-    - "WOLF"
-    - "OCELOT"
-    - "CAT"
-    - "PARROT"
-    - "LLAMA"
-    - "TRADER_LLAMA"
-    - "DONKEY"
-    - "MULE"
-    - "HORSE"
-    - "SKELETON_HORSE"
-    - "ZOMBIE_HORSE"
-    - "ALLAY"
-    - "MINECART"
-    - "MINECART_CHEST"
-    - "MINECART_FURNACE"
-    - "MINECART_TNT"
-    - "MINECART_HOPPER"
-    - "MINECART_MOB_SPAWNER"
-    - "MINECART_COMMAND"
-    - "OAK_BOAT"
-    - "SPRUCE_BOAT"
-    - "BIRCH_BOAT"
-    - "JUNGLE_BOAT"
-    - "ACACIA_BOAT"
-    - "DARK_OAK_BOAT"
-    - "MANGROVE_BOAT"
-    - "CHERRY_BOAT"
-    - "BEE"
-    - "PLAYER" # This is how you disable damage to players.
-  # If the list above is a whitelist.
-  # If this is false, then it is a blacklist.
-  is-whitelist: false
-# Worlds config.
-worlds:
-  # A list of world names.
-  names:
-    - "lobby"
-  # If the list above is a whitelist.
-  # If this is false, then it is a blacklist.
-  is-whitelist: false
+# List of damagers.
+damagers:
+  # The identifier of the damager.
+  stonecutter:
+    # If the damager is enabled.
+    enabled: true
+    # Offset of the damager.
+    offset:
+      # X offset.
+      x: 0
+      # Y offset.
+      y: 0
+      # Z offset.
+      z: 0
+    # Ticks between hurting the entity.
+    # 20 ticks = 1 second.
+    ticks-per-damage: 10
+    # Amount of damage points to hurt.
+    # 1.0 = 1/2 of a heart.
+    # 10.5 = 5 and 1/4 hearts.
+    damage-amount: 3.0
+    # Permission config.
+    permission:
+      # If the permission is required to be damaged.
+      # Leave "" to disable.
+      include: ""
+      # If the permission is required to bypass the damage.
+      # Leave "" to disable.
+      exclude: "stonedamager.bypass"
+    # Entity config.
+    entities:
+      # A list of entity types.
+      # Find a full list at: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
+      list: [] # Empty list.
+      # If the list above is a blacklist.
+      # If this is false, then it is a whitelist.
+      is-blacklist: true
+    # Worlds config.
+    worlds:
+      # A list of world names.
+      list:
+        - "lobby"
+      # If the list above is a blacklist.
+      # If this is false, then it is a whitelist.
+      is-blacklist: true
+    # Materials that count as a damager for this selection.
+    materials:
+      # A list of world names.
+      list:
+        - "STONECUTTER"
+      # If the list above is a blacklist.
+      # If this is false, then it is a whitelist.
+      is-blacklist: false
+
+  glass:
+    enabled: false # Disabled due to this being an example.
+    offset:
+      x: 0
+      y: -1 # 1 block below the entity.
+      z: 0
+    ticks-per-damage: 5
+    damage-amount: 5.0
+    permission:
+      include: ""
+      exclude: "stonedamager.bypass"
+    entities:
+      list: [] # Empty list.
+      is-blacklist: true
+    worlds:
+      list:
+        - "lobby"
+      is-blacklist: true
+    materials:
+      list:
+        - "GLASS"
+      is-blacklist: false
+
+# For some reason, stonecutters are marked as air...
+# This is a patch to fix that.
+stonecutter-patch: true
+
+# DO NOT TOUCH THIS.
+config-version: "1.0"

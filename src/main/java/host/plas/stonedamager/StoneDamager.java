@@ -1,13 +1,15 @@
 package host.plas.stonedamager;
 
-import host.plas.bou.PluginBase;
+import host.plas.bou.BetterPlugin;
+import host.plas.stonedamager.commands.ReloadCMD;
+import host.plas.stonedamager.utils.DamageHandler;
 import lombok.Getter;
 import lombok.Setter;
 import host.plas.stonedamager.config.DamagerConfig;
 import host.plas.stonedamager.runnables.TickTicker;
 
 @Getter @Setter
-public final class StoneDamager extends PluginBase {
+public final class StoneDamager extends BetterPlugin {
     @Getter @Setter
     private static StoneDamager instance;
     @Getter @Setter
@@ -28,10 +30,15 @@ public final class StoneDamager extends PluginBase {
         damagerConfig = new DamagerConfig();
 
         tickTicker = new TickTicker();
+
+        new ReloadCMD();
     }
 
     @Override
     public void onBaseDisable() {
         // Plugin shutdown logic
+        tickTicker.cancel();
+
+        DamageHandler.clearTickables();
     }
 }

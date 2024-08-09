@@ -6,5 +6,12 @@ depend:
   - BukkitOfUtils
 description: A plugin to simply make it so that stone cutters damage entities.
 website: https://site.plasmere.net
-api-version: 1.14
 folia-supported: true
+
+commands:
+  reloadstonedamager:
+    description: Reload the config file.
+    permission: stonedamager.commands.reloadcmd
+    aliases:
+      - rlsd
+      - reloadsd
