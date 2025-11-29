@@ -19,29 +19,40 @@ ext {
 }
 
 repositories {
+    // Maven Defaults
     mavenCentral()
     mavenLocal()
+
+    // SpigotMC Repos
     maven {
         url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
-
-        // As of Gradle 5.1, you can limit this to only those
-        // dependencies you expect from it
         content {
             includeGroup 'org.bukkit'
             includeGroup 'org.spigotmc'
         }
     }
+
+    // Sonatype Repos
     maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
     maven { url = 'https://oss.sonatype.org/content/repositories/central' }
     maven {
         name = "sonatype"
         url = "https://oss.sonatype.org/content/groups/public/"
     }
+
+    // CodeMC Streamline Essentials Repo
+    maven { url "https://repo.codemc.org/repository/streamline-essentials/" }
+
+    // JitPack
     maven { url "https://jitpack.io" }
+
+    // PlaceholderAPI Repo
     maven {
         name = "placeholderapi"
         url = "https://repo.extendedclip.com/content/repositories/placeholderapi/"
     }
+
+    // Papermc Repositories
     maven { url 'https://repo.papermc.io/repository/maven-snapshots/' }
     maven { url 'https://repo.papermc.io/repository/maven-public/' }
 }

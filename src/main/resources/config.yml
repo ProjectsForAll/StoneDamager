@@ -33,7 +33,8 @@ damagers:
       # Find a full list at: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
       list: [] # Empty list.
       # If the list above is a blacklist.
-      # If this is false, then it is a whitelist.
+      # true = do not damage these entities.
+      # false = only damage these entities.
       is-blacklist: true
     # Worlds config.
     worlds:
@@ -41,7 +42,8 @@ damagers:
       list:
         - "lobby"
       # If the list above is a blacklist.
-      # If this is false, then it is a whitelist.
+      # true = do not damage in these worlds.
+      # false = only damage in these worlds.
       is-blacklist: true
     # Materials that count as a damager for this selection.
     materials:
@@ -49,7 +51,8 @@ damagers:
       list:
         - "STONECUTTER"
       # If the list above is a blacklist.
-      # If this is false, then it is a whitelist.
+      # true = do not count these materials.
+      # false = only count these materials.
       is-blacklist: false
 
   glass:
@@ -75,9 +78,18 @@ damagers:
         - "GLASS"
       is-blacklist: false
 
-# For some reason, stonecutters are marked as air...
-# This is a patch to fix that.
-stonecutter-patch: true
+# Settings for the damager system.
+settings:
+  # Try to find a player to count as the source of damage.
+  # This is to allow for experience and loot drops.
+  try-find-player:
+    # If this feature is enabled.
+    # true = Yes. Use this feature.
+    # false = No. Do not use this feature.
+    enabled: true
+    # Maximum distance to search for a player (in blocks).
+    # Can be a decimal value.
+    radius: 30.0
 
 # DO NOT TOUCH THIS.
 config-version: "1.0"
