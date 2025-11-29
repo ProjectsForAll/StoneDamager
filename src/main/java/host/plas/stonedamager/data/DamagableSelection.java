@@ -1,14 +1,13 @@
 package host.plas.stonedamager.data;
 
+import gg.drak.thebase.objects.Identifiable;
 import host.plas.bou.configs.bits.ConfigurableWhitelist;
-import host.plas.stonedamager.patch.StoneCutterPatch;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
-import tv.quaint.objects.Identifiable;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -45,10 +44,6 @@ public class DamagableSelection implements Identifiable {
     }
 
     public boolean checkMaterial(Block block) {
-        if (isMaterialsContainsSC()) {
-            if (StoneCutterPatch.isStoneCutter(block)) return ! materials.isBlacklist();
-        }
-
         return checkMaterial(block.getType().name());
     }
 
@@ -63,14 +58,14 @@ public class DamagableSelection implements Identifiable {
     public boolean checkPermissions(Entity player) {
         if (! (player instanceof Player)) return true;
 
-        if (includePermission.isBlank() || includePermission.isEmpty()) {
-            if (excludePermission.isBlank() || excludePermission.isEmpty()) {
+        if (isEmptyPermission(includePermission)) {
+            if (isEmptyPermission(excludePermission)) {
                 return true;
             } else {
                 return ! player.hasPermission(excludePermission);
             }
         } else {
-            if (excludePermission.isBlank() || excludePermission.isEmpty()) {
+            if (isEmptyPermission(excludePermission)) {
                 return player.hasPermission(includePermission);
             } else {
                 return player.hasPermission(includePermission) && ! player.hasPermission(excludePermission);
@@ -89,5 +84,12 @@ public class DamagableSelection implements Identifiable {
         Block block = location.add(xOffset, yOffset, zOffset).getBlock();
 
         return checkAll(entity, block);
+    }
+
+    public static boolean isEmptyPermission(String permission) {
+        return permission == null || permission.isBlank() ||
+                permission.equalsIgnoreCase("none") || permission.equalsIgnoreCase("null") ||
+                permission.equalsIgnoreCase("disable") || permission.equalsIgnoreCase("disabled") ||
+                permission.equalsIgnoreCase("off");
     }
 }

@@ -1,17 +1,17 @@
 package host.plas.stonedamager.config;
 
+import gg.drak.thebase.storage.resources.flat.simple.SimpleConfiguration;
 import host.plas.bou.configs.bits.ConfigurableWhitelist;
 import host.plas.stonedamager.StoneDamager;
 import host.plas.stonedamager.data.DamagableSelection;
 import host.plas.stonedamager.utils.DamageHandler;
-import tv.quaint.storage.resources.flat.simple.SimpleConfiguration;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentSkipListSet;
 
-public class DamagerConfig extends SimpleConfiguration {
-    public DamagerConfig() {
+public class MainConfig extends SimpleConfiguration {
+    public MainConfig() {
         super("config.yml", StoneDamager.getInstance(), true);
     }
 
@@ -26,7 +26,8 @@ public class DamagerConfig extends SimpleConfiguration {
 
         StoneDamager.getInstance().logInfo("&fLoaded &a" + getSelections().size() + " &fdamager selections.");
 
-        isStoneCutterPatchEnabled();
+        isTryFindPlayer();
+        getFindPlayerRadius();
 
         String configVersion = getConfigVersion();
         if (! configVersion.equals("1.0")) {
@@ -101,9 +102,15 @@ public class DamagerConfig extends SimpleConfiguration {
         return getResource().getOrDefault("config-version", "null");
     }
 
-    public boolean isStoneCutterPatchEnabled() {
+    public boolean isTryFindPlayer() {
         reloadResource();
 
-        return getOrSetDefault("stonecutter-patch", true);
+        return getOrSetDefault("settings.try-find-player.enabled", true);
+    }
+
+    public double getFindPlayerRadius() {
+        reloadResource();
+
+        return getOrSetDefault("settings.try-find-player.radius", 30d);
     }
 }

@@ -19,8 +19,11 @@ ext {
 }
 
 repositories {
+    // Maven Defaults
     mavenCentral()
     mavenLocal()
+
+    // SpigotMC Repos
     maven {
         url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
         content {
@@ -28,28 +31,28 @@ repositories {
             includeGroup 'org.spigotmc'
         }
     }
+
+    // Sonatype Repos
     maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
     maven { url = 'https://oss.sonatype.org/content/repositories/central' }
     maven {
         name = "sonatype"
         url = "https://oss.sonatype.org/content/groups/public/"
     }
-    
-    // Updated JitPack repo logic to be conditional
-    // This prevents 401 errors on public repos if the authToken is empty
-    maven { 
-        url "https://jitpack.io" 
-        if (project.hasProperty('authToken') && project.authToken.toString().trim()) {
-            credentials { 
-                username = project.authToken 
-            }
-        }
-    }
-    
+
+    // CodeMC Streamline Essentials Repo
+    maven { url "https://repo.codemc.org/repository/streamline-essentials/" }
+
+    // JitPack
+    maven { url "https://jitpack.io" }
+
+    // PlaceholderAPI Repo
     maven {
         name = "placeholderapi"
         url = "https://repo.extendedclip.com/content/repositories/placeholderapi/"
     }
+
+    // Papermc Repositories
     maven { url 'https://repo.papermc.io/repository/maven-snapshots/' }
     maven { url 'https://repo.papermc.io/repository/maven-public/' }
 }

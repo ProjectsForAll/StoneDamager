@@ -8,7 +8,7 @@ description: A plugin to simply make it so that stone cutters damage entities.
 website: https://site.plasmere.net
 folia-supported: true
 
-api-version: 1.21
+api-version: 1.14
 
 commands:
   reloadstonedamager:

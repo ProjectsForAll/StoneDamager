@@ -101,20 +101,7 @@ public class DamageHandler {
 
     public static void fireInSync(ScheduledDamageEvent event) {
         try {
-            LivingEntity target = event.getEntity();
-            double damage = event.getDamagableSelection().getDamageAmount();
-
-            // Find closest player within 30 blocks
-            Player attacker = getNearestPlayer(target, 30);
-
-            if (attacker != null) {
-                // Player-based damage: XP, drops, kill credit
-                target.damage(damage, attacker);
-            } else {
-                // No player nearby: environmental damage
-                target.damage(damage);
-            }
-
+            event.damageEntity();
         } catch (Throwable e) {
             StoneDamager.getInstance().logWarningWithInfo("Error while firing damage event in sync.", e);
         }

@@ -17,7 +17,7 @@ public class ReloadCMD extends SimplifiedCommand {
         CompletableFuture.runAsync(() -> {
             ctx.sendMessage("&eReloading &cconfigurations&8...");
 
-            StoneDamager.getDamagerConfig().onReload();
+            StoneDamager.getMainConfig().onReload();
 
             ctx.sendMessage("&eReloaded &cconfigurations&8!");
         });
